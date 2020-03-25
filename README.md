@@ -7,9 +7,9 @@ spring boot 开发技术整理
 3. 打包jar  
 	```<packaging>jar</packaging>  
 	mvn clean package  
-	java -jar xxx.jar  ```
+	java -jar xxx.jar```
 4. 打包war,发布tomcat运行  
 	```<packaging>war</packaging>  
 	mvn clean package  
 	将war包放入apache-tomcat-8.5.50\webapps\目录下  
-	启动tomcat服务即可访问  ```
+	启动tomcat服务即可访问```
