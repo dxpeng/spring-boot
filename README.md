@@ -189,4 +189,68 @@ server.tomcat.max-threads=200
 server.tomcat.basedir=/home/username/tmp
 ```
 
+#### 面向切面编程AOP
+```
+Joinpoint 连接点：
+	类里面可以被增强的方法即为连接点。
+
+Pointcut 切入点：
+		对Joinpoint进行拦截的定义即为切入点。
+		
+Advice 通知：
+		拦截到Joinpoint之后所要做的事情即为通知。
+		通知有 前置通知、后置通知、异常通知、最终通知、环绕通知。
+
+Aspect 切面：
+		Pointcut和Advice的结合。
+		
+Targer 目标对象：
+		要增强的类即称为Target。
+		
+
+AOP使用
+
+1. 依赖
+	spring-boot-starter-aop
+	
+2. 创建切面配置
+@Component
+@Aspect
+public class LogAspect{
+	//对所有方法增强
+	@Pointcut("execution(* com.xpit.aop.service.*.*(..))")
+	public void pc1(){}
+	
+	//前置通知: 在被增强的方法执行前执行
+	@Before(value="pc1()")
+	public void before(Joinpoint jp){
+		//获取被增强的方法名
+		String name = jp.getSignature().getName();
+	}
+	
+	//后置通知：在增强的方法执行之后执行
+	@After(value="pc1()")
+	public void after(Joinpoint jp){
+	
+	}
+	
+	//当被增强方法有返回值时执行
+	@AfterReturning(value="pc1()", returning="result")
+	public void afterReturning(Joinpoint jp, Object result){
+		// result为被增强方法的return返回值
+	}
+	
+	//异常通知：在被增强方法执行异常时执行
+	@AfterThrowing(value="pc1()", throwing="e")
+	public void afterThrowing(Joinpoint jp, Exception e){
+		// 获取被增强的方法抛出的异常 e.getMessage()
+	}
+	
+	//环绕通知：在被增强方法执行的前、后执行
+	@Around("pc1()")
+	public Object around(ProceedingJoinPoin pjp) throws Throwable{
+		return pjp.proceed();
+	}
+}	
+```
 	
