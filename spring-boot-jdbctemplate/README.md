@@ -27,6 +27,17 @@ spring.datasource.password=root
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
 ```
+#### 创建数据表
+```
+CREATE TABLE
+IF
+	NOT EXISTS `user` ( 
+	`id` INT NOT NULL, 
+	`name` VARCHAR ( 32 ), 
+	`address` VARCHAR ( 64 ), 
+	PRIMARY KEY ( `id` ) 
+	) ENGINE = INNODB DEFAULT charset = utf8;
+```
 #### 实体类
 ```
 public class User {
