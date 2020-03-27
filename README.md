@@ -1,7 +1,7 @@
 # spring-boot
 spring boot 开发技术整理
 
-#### maven仓库
+#### maven仓库配置
 ```
 <mirror>
 		<id>nexus-aliyun</id>
