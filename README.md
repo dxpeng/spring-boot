@@ -1,6 +1,16 @@
 # spring-boot
 spring boot 开发技术整理
 
+#### maven仓库
+```
+<mirror>
+		<id>nexus-aliyun</id>
+		<mirrorOf>*</mirrorOf>
+		<name>Nexus aliyun</name>
+		<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+</mirror>
+```
+
 #### spring-boot项目启动方式
 ```
 1. mvn spring-boot:run
