@@ -22,25 +22,21 @@ public class UserDao {
         int result = jdbcTemplate.update("INSERT INTO user(name,address) VALUES (?,?)", user.getName(), user.getAddress());
         return result;
     }
-
     //删
     public int deleteUserById(Integer id) {
-        int result = jdbcTemplate.update("DELETE * FROM user WHERE id=?", id);
+        int result = jdbcTemplate.update("DELETE FROM user WHERE id=?", id);
         return result;
     }
-
     //改
     public int updateUserById(User user) {
-        int result = jdbcTemplate.update("UPDATE user SET name=?,address=?", user.getName(), user.getAddress());
+        int result = jdbcTemplate.update("UPDATE user SET name=?,address=? WHERE id=?", user.getName(), user.getAddress(), user.getId());
         return result;
     }
-
     // 查单个
     public User getUserById(Integer id) {
         User user = jdbcTemplate.queryForObject("SELECT * FROM user WHERE id=?", new BeanPropertyRowMapper<>(User.class), id);
         return user;
     }
-
     //查所有
     public List<User> getAllUsers() {
         List<User> users = jdbcTemplate.query("SELECT * FROM user", new BeanPropertyRowMapper<>(User.class));
