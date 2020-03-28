@@ -4,10 +4,10 @@ spring boot 开发技术整理
 #### maven仓库配置
 ```
 <mirror>
-		<id>nexus-aliyun</id>
-		<mirrorOf>*</mirrorOf>
-		<name>Nexus aliyun</name>
-		<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+	<id>nexus-aliyun</id>
+	<mirrorOf>*</mirrorOf>
+	<name>Nexus aliyun</name>
+	<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 </mirror>
 ```
 

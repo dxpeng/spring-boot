@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xpit.springbootmybatis.mapper.UserMapper">
+    <!--id对应mapper接口的方法-->
+    <insert id="addUser" parameterType="com.xpit.springbootmybatis.entity.User">
+        INSERT INTO user(name,address) VALUES (#{name},#{address})
+    </insert>
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+    <update id="updateUserById" parameterType="com.xpit.springbootmybatis.entity.User">
+        UPDATE user SET name=#{name},address=#{address} WHERE id=#{id}
+    </update>
+    <select id="getUserById" parameterType="int" resultType="com.xpit.springbootmybatis.entity.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+    <select id="getAllUsers" resultType="com.xpit.springbootmybatis.entity.User">
+        SELECT * FROM user
+    </select>
+</mapper>
