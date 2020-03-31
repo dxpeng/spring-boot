@@ -5,8 +5,8 @@ spring boot 开发技术整理
 ```
 <mirror>
 	<id>nexus-aliyun</id>
-	<mirrorOf>*</mirrorOf>
-	<name>Nexus aliyun</name>
+	<mirrorOf>central</mirrorOf>
+	<name>nexus aliyun</name>
 	<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 </mirror>
 ```
