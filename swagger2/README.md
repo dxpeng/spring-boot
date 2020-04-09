@@ -136,13 +136,27 @@ http://localhost:8080/swagger-ui.html#/
 ```
 如果项目中集成了Spring Security，需要在Spring Security的配置类中重写configure方法。
 
-@Override
-public void configure(WebSecurity web) throws Exception {
-    web.ignoring()
-            .antMatchers("/swagger-ui.html")
-            .antMatchers("/v2/**")
-            .antMatchers("/swagger-resources/**");
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests() // 对请求授权
+                .antMatchers("/swagger-ui.html").permitAll() //允许所有人访问
+                .antMatchers("/v2/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/csrf").permitAll()
+                .antMatchers("/").permitAll()
+                .anyRequest() // 任何请求
+                .authenticated()// 需要身份认证
+                .and()
+                .formLogin()
+        ;
+    }
 }
+
 
 ```
 
