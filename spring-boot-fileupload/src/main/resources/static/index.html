@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax上传图片</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="pp2">
+    <h2>表单上传</h2>
+    <form action="/file/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="表单上传文件">
+    </form>
+</div>
+<div id="app">
+    <h2>{{title}}</h2>
+    <input type="file" ref="myfile">
+    <button @click="importData">上传图片</button>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            title: 'vue图片上传'
+        },
+        methods: {
+            uploadFileRequest: function (url, params) {
+                return axios({
+                    method: 'post',
+                    url: url,
+                    data: params,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            },
+            importData: function () {
+                var myfile = this.$refs.myfile;
+                var files = myfile.files;
+                var file = files[0];
+                var formData = new FormData();
+                formData.append("file", file);
+                var url = 'http://localhost:8080/file/upload';
+                console.log(formData);
+                this.uploadFileRequest(url, formData).then(function (res) {
+                    console.log(res)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
